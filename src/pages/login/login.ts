@@ -14,6 +14,8 @@ export class LoginPage {
     registerCredentials = { username: '', password: '' };
 
     constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
+        
+    
     }
 
     public login() {

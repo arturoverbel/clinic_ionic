@@ -31,9 +31,9 @@ export class HomePage {
         
         this.http.get('http://35.168.88.201/clinic/api/type_accident/index.php')
         .subscribe(data => {
-            console.log( data );
-            this.listTypes = JSON.parse(data._body );
-            console.log( this.listTypes);
+            console.log( data.json() );
+            this.listTypes = data.json();
+            console.log( this.listTypes); 
         });
         
     }
@@ -45,13 +45,13 @@ export class HomePage {
         
         this.http.get('http://35.168.88.201/clinic/api/accident/create.php?id_type_accident='+values.id_type_accident+'&id_user='+values.id_user+'&observations='+values.observations)
         .subscribe(data => {
-            var response = JSON.parse(data._body );
-            console.log(response);
+            var response = JSON.parse( data.json() );
+            console.log( data.json() );
             if( response ){
                 if(confirm("Registrado exitosamente.")) {
-                    location.reload();
+                    this.nav.push(HomePage);
                 }else{
-                    location.reload();
+                    this.nav.push(HomePage);
                 }
             }else{
                 alert('No se pudo registrar');

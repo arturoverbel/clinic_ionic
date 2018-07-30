@@ -31,13 +31,13 @@ export class AuthServiceProvider {
                 
                 this.http.get('http://35.168.88.201/clinic/api/user/login.php?username='+credentials.username+'&password='+credentials.password)
                 .subscribe(data => {
-                    console.log( data._body );
+                    console.log( data.json() );
                     
-                    if( data._body != '[]'){
-                        var user_post = JSON.parse(data._body );
+                    let access = true;
+                    
+                    if( JSON.stringify(data.json() ) != '[]'){
+                        var user_post = JSON.parse( data.json() );
                         this.currentUser = new User(user_post.name, user_post.username, user_post.id);
-
-                        let access = true;
 
                         observer.next(access);
                         observer.complete();
