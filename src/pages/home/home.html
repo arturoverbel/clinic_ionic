@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Clínica
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button (click)="logout()">
+                <ion-icon name="log-out"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="home" padding>
+    <h3>Welcome, {{name}}!</h3>
+    <form [formGroup]="accidentForm" (ngSubmit)="register()">
+        <ion-item>
+            <ion-label>Tipo de Accidente</ion-label>
+            <ion-select name="id_type_accident" formControlName="id_type_accident">
+                <ion-option *ngFor="let type of listTypes" [value]="type.id">{{type.name}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Observaciones</ion-label>
+            <ion-input type="text" name="observations" formControlName="observations" required></ion-input>
+        </ion-item>
+        
+        <button ion-button class="submit-btn" full type="submit">Registrar</button>
+    </form>
+    
+</ion-content>
